@@ -45,4 +45,10 @@ public class MouseCamLook : MonoBehaviour
 
         rb.rotation = Quaternion.AngleAxis(mouseLook.x, Vector3.up);
     }
+
+    void FixedUpdate()
+    {
+        
+    }
+
 }
