@@ -4,56 +4,40 @@ using UnityEngine;
 
 public class MouseCamLook : MonoBehaviour
 {
-    //Creates adjustable sensitivity
-    [SerializeField]
-    public float sensitivity = 1.0f;
 
-    //Creates adjustable smoothness 
-    [SerializeField]
-    public float smoothing = 2.0f;
+    // private GameObject player;
 
-    //player object
-    public GameObject player;
-    private Rigidbody rb;
+    // // Start is called before the first frame update
+    // void Start()
+    // {
+    //     // player = this.transform.parent.gameObject;
+    //     // rb = player.GetComponent<Rigidbody>();
+    // }
 
-    private Vector2 mouseLook;
+    // private void FixedUpdate(){
+    //     var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+    //     Quaternion angle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+    //     if(angle.x < 0.5 && angle.x > -0.5){
+    //         transform.localRotation = angle;
+    //     }
+    // }
 
-    private Vector2 smoothV;
+    // private void LateUpdate() {
+    //     // //the delta value for mouse movement
+    //     // var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+    //     // md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
+    //     // smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
+    //     // smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = this.transform.parent.gameObject;
-        rb = player.GetComponent<Rigidbody>();
-    }
+    //     // mouseLook += smoothV;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //     // Quaternion angle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+    //     // if(angle.x < 0.5 && angle.x > -0.5){
+    //     //     transform.localRotation = angle;
+    //     // }
 
-    void FixedUpdate()
-    {
-        
-    }
-
-     private void LateUpdate() {
-        // //the delta value for mouse movement
-        // var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        // md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
-        // smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
-        // smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
-
-        // mouseLook += smoothV;
-
-        // Quaternion angle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        // if(angle.x < 0.5 && angle.x > -0.5){
-        //     transform.localRotation = angle;
-        // }
-
-        // rb.MoveRotation(rb.rotation * Quaternion.AngleAxis(mouseLook.x, Vector3.up));
-        this.transform.forward = player.transform.forward;
-    }
+    //     // rb.MoveRotation(rb.rotation * Quaternion.AngleAxis(mouseLook.x, Vector3.up));
+    //     this.transform.forward = player.transform.forward;
+    // }
 
 }

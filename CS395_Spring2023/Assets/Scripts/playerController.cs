@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour
     [SerializeField]
     public float sensitivity = 1.0f;
     private Vector2 mouseLook;
+    private GameObject camera;
     
 
     // Start is called before the first frame update
@@ -26,6 +27,8 @@ public class playerController : MonoBehaviour
         
         rb = gameObject.GetComponent<Rigidbody>();
         // transform = gameObject.GetComponent<Transform>();
+
+        camera = this.transform.GetChild(0).gameObject;
 
     }
 
@@ -55,14 +58,21 @@ public class playerController : MonoBehaviour
        
         mouseLook += md;
 
-        // Quaternion angle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        // if(angle.x < 0.5 && angle.x > -0.5){
-        //      transform.localRotation = angle;
-        // }
+        
         rb.rotation = Quaternion.AngleAxis(mouseLook.x, Vector3.up);
         //rb.MoveRotation(rb.rotation * Quaternion.AngleAxis(mouseLook.x, Vector3.up));
 
            
+    }
+
+    void LateUpdate(){
+        Quaternion angle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+        if(angle.x < 0.5 && angle.x > -0.5){
+            camera.transform.rotation = angle;
+            print("here");
+        }
+
+        camera.transform.forward = this.transform.forward;
     }
 
 }

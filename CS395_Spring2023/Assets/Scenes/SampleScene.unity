@@ -920,6 +920,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 870448364}
     - target: {fileID: 282369223527202493, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 282369223527202493, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
       propertyPath: sensitivity
       value: 1
       objectReference: {fileID: 0}
@@ -981,7 +985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 282369224326883353, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
       propertyPath: sensitivity
-      value: 0.1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 282369224326883354, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
       propertyPath: m_Enabled
@@ -991,7 +995,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 282369223527202493, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
 --- !u!1001 &4105721746795239189
 PrefabInstance:
