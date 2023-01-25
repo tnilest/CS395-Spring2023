@@ -6,7 +6,7 @@ public class MouseCamLook : MonoBehaviour
 {
     //Creates adjustable sensitivity
     [SerializeField]
-    public float sensitivity = 5.0f;
+    public float sensitivity = 1.0f;
 
     //Creates adjustable smoothness 
     [SerializeField]
@@ -30,6 +30,15 @@ public class MouseCamLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    void FixedUpdate()
+    {
+        
+    }
+
+     private void LateUpdate() {
         //the delta value for mouse movement
         var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
@@ -44,11 +53,6 @@ public class MouseCamLook : MonoBehaviour
         }
 
         rb.rotation = Quaternion.AngleAxis(mouseLook.x, Vector3.up);
-    }
-
-    void FixedUpdate()
-    {
-        
     }
 
 }

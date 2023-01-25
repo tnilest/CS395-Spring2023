@@ -6,6 +6,8 @@ public class playerController : MonoBehaviour
 {
     [SerializeField]
     public float speed = 6.0f;
+    [SerializeField]
+    public float max_speed = 15f;
     private float translation;
     private float straffe;
     private Rigidbody rb;
@@ -18,6 +20,7 @@ public class playerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         
         rb = gameObject.GetComponent<Rigidbody>();
+        // transform = gameObject.GetComponent<Transform>();
 
     }
 
@@ -28,22 +31,26 @@ public class playerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        float curr_speed = speed;
-        if (Input.GetKey(KeyCode.LeftShift)){
-            curr_speed = 1.5f * speed;
+        if(Vector3.Magnitude(rb.velocity) <= max_speed){
+            float curr_speed = speed;
+
+            //detects forward backward directional input and moves proportional to speed value.
+            translation = Input.GetAxis("Vertical") * curr_speed * Time.deltaTime;
+
+            //detects left/right keyboard input
+            straffe = Input.GetAxis("Horizontal") * curr_speed * Time.deltaTime;
+
+            curr_pos = rb.position;
+            Vector3 input = new Vector3(straffe, 0, translation);
+            input = rb.rotation * input;
+
+            rb.AddForce(input, ForceMode.Impulse);
+            //rb.MovePosition(curr_pos + input);
         }
-
-        //detects forward backward directional input and moves proportional to speed value.
-        translation = Input.GetAxis("Vertical") * curr_speed * Time.deltaTime;
-
-        //detects left/right keyboard input
-        straffe = Input.GetAxis("Horizontal") * curr_speed * Time.deltaTime;
-
-        curr_pos = rb.position;
-        Vector3 input = new Vector3(straffe, 0, translation);
-        input = rb.rotation * input;
-
-        rb.MovePosition(curr_pos + input);
+        elseif(Vector3.Magnitude(rb.velocity) > max_speed){
+            float reduceSpeed = 
+        }
+        
     }
 
 }
