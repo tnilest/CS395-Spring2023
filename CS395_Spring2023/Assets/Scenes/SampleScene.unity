@@ -674,6 +674,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &870448364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 282369224326883359, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
+  m_PrefabInstance: {fileID: 282369225249934812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1153609162
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +916,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 282369223527202493, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 870448364}
+    - target: {fileID: 282369223527202493, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
       propertyPath: sensitivity
       value: 1
       objectReference: {fileID: 0}
@@ -968,7 +977,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 282369224326883353, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
       propertyPath: speed
-      value: 1000
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 282369224326883353, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
+      propertyPath: sensitivity
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 282369224326883354, guid: a26af38fdb2b2ba4e8dfd4e22269f3b6, type: 3}
       propertyPath: m_Enabled
