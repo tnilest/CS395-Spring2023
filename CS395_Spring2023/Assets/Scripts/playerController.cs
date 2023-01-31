@@ -8,28 +8,28 @@ public class playerController : MonoBehaviour
     public float speed = 6.0f;
     [SerializeField]
     public float max_speed = 15f;
-    private float translation;
-    private float straffe;
+    private float vert;
+    private float horz;
     private Rigidbody rb;
     private Vector3 curr_pos;
     //mouseCameraLook variables
     [SerializeField]
     public float sensitivity = 1.0f;
+    [SerializeField]
+    public float smoothing = 2.0f;
     private Vector2 mouseLook;
+    private Vector2 smoothV;
     private GameObject camera;
+    private float maxLookAngle = 50.0f;
+    private float minLookAngle = -50.0f;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        //used to turn off mouse cursor during execution.
-        Cursor.lockState = CursorLockMode.Locked;
-        
-        rb = gameObject.GetComponent<Rigidbody>();
-        // transform = gameObject.GetComponent<Transform>();
-
-        camera = this.transform.GetChild(0).gameObject;
-
+        Cursor.lockState = CursorLockMode.Locked; //used to turn off mouse cursor during execution.
+        rb = gameObject.GetComponent<Rigidbody>(); // collects player's rididbody
+        camera = this.transform.GetChild(0).gameObject; // collects camera object, assuming it is the first child of player
     }
 
     // Update is called once per frame
@@ -41,38 +41,30 @@ public class playerController : MonoBehaviour
     void FixedUpdate() {
         float curr_speed = speed;
 
-        //detects forward backward directional input and moves proportional to speed value.
-        translation = Input.GetAxis("Vertical") * curr_speed * Time.deltaTime;
-
-        //detects left/right keyboard input
-        straffe = Input.GetAxis("Horizontal") * curr_speed * Time.deltaTime;
+        vert = Input.GetAxis("Vertical") * curr_speed * Time.deltaTime; //detects forward backward directional input and moves proportional to speed value.
+        horz = Input.GetAxis("Horizontal") * curr_speed * Time.deltaTime; //detects left/right keyboard input
 
         curr_pos = rb.position;
-        Vector3 input = new Vector3(straffe, 0, translation);
+        Vector3 input = new Vector3(horz, 0, vert);
         input = rb.rotation * input;
         rb.AddForce(input, ForceMode.Impulse); 
 
-
         var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        md = Vector2.Scale(md, new Vector2(sensitivity, sensitivity));
-       
-        mouseLook += md;
-
+        md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
+        smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
+        smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
+        mouseLook += smoothV;
         
         rb.rotation = Quaternion.AngleAxis(mouseLook.x, Vector3.up);
-        //rb.MoveRotation(rb.rotation * Quaternion.AngleAxis(mouseLook.x, Vector3.up));
-
            
     }
 
     void LateUpdate(){
-        Quaternion angle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        if(angle.x < 0.5 && angle.x > -0.5){
-            camera.transform.rotation = angle;
-            print("here");
-        }
 
-        camera.transform.forward = this.transform.forward;
+        mouseLook.y = Mathf.Clamp(mouseLook.y, minLookAngle, maxLookAngle);
+        Quaternion lookAngle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+        camera.transform.localRotation = lookAngle;
+
     }
 
 }
