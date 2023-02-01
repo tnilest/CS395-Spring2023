@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Environement
+  - Ramp
   layers:
   - Default
   - TransparentFX
