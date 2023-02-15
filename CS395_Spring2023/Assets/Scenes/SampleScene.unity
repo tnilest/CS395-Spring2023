@@ -136,9 +136,10 @@ GameObject:
   - component: {fileID: 44453777}
   - component: {fileID: 44453776}
   - component: {fileID: 44453780}
+  - component: {fileID: 44453781}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Environement
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,6 +238,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &44453781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44453775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ddaee2adc31e0409b845066468a638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal: 1
 --- !u!1 &202224678
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,9 +264,10 @@ GameObject:
   - component: {fileID: 202224680}
   - component: {fileID: 202224679}
   - component: {fileID: 202224683}
+  - component: {fileID: 202224684}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -351,6 +366,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &202224684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202224678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ddaee2adc31e0409b845066468a638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal: 1
 --- !u!1 &485183703
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,9 +392,10 @@ GameObject:
   - component: {fileID: 485183706}
   - component: {fileID: 485183705}
   - component: {fileID: 485183704}
+  - component: {fileID: 485183709}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Environement
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -465,6 +494,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &485183709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485183703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ddaee2adc31e0409b845066468a638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,9 +614,10 @@ GameObject:
   - component: {fileID: 760476549}
   - component: {fileID: 760476548}
   - component: {fileID: 760476552}
+  - component: {fileID: 760476553}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -674,6 +717,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &760476553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760476547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ddaee2adc31e0409b845066468a638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal: 1
 --- !u!1 &1153609162
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,9 +743,10 @@ GameObject:
   - component: {fileID: 1153609165}
   - component: {fileID: 1153609164}
   - component: {fileID: 1153609163}
+  - component: {fileID: 1153609168}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -788,6 +845,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1153609168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153609162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ddaee2adc31e0409b845066468a638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal: 1
 --- !u!1001 &1224584266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -803,6 +873,18 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7159435580883612309, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: itemColor
+      value: 
+      objectReference: {fileID: 2100000, guid: 18886c46e00bf114ebe73485e79060b0, type: 2}
+    - target: {fileID: 7159435580883612309, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: sensitivity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159435580883612309, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: highlightedItemColor
+      value: 
+      objectReference: {fileID: 2100000, guid: c0b0c249cb8f4e54795be37a91004beb, type: 2}
     - target: {fileID: 7159435580883612313, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -862,9 +944,10 @@ GameObject:
   - component: {fileID: 1832226358}
   - component: {fileID: 1832226357}
   - component: {fileID: 1832226356}
+  - component: {fileID: 1832226361}
   m_Layer: 0
   m_Name: Capsule (1)
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -964,6 +1047,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 22.773, y: 90.765, z: 92.394}
+--- !u!114 &1832226361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832226355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ddaee2adc31e0409b845066468a638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal: 1
 --- !u!1001 &4105721746795239189
 PrefabInstance:
   m_ObjectHideFlags: 0

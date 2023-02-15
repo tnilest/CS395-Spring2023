@@ -21,19 +21,12 @@ public class FootColliderScript : MonoBehaviour
         if(other.gameObject.tag == "Environement"){
             this.GetComponentInParent<playerController>().canJump = true; 
         }
-        else if (other.gameObject.tag == "Ramp"){
-            this.GetComponentInParent<Rigidbody>().AddForce(new Vector3(0,1,0), ForceMode.Impulse);
-        }
-        
     }
 
     private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "Environement"){
             this.GetComponentInParent<playerController>().canJump = true; 
         }
-        if (other.gameObject.tag == "Ramp"){
-            this.GetComponentInParent<Rigidbody>().AddForce(new Vector3(0,1,0), ForceMode.Impulse);
-        } 
     }
 
     private void OnTriggerExit(Collider other){

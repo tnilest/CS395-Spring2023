@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Environement
   - Ramp
+  - Metal
   layers:
   - Default
   - TransparentFX
