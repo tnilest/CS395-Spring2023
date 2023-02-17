@@ -72,8 +72,8 @@ public class playerController : MonoBehaviour
                 if(Input.GetMouseButton(1)){ //right click pulls object
                 //add force to item proportional to itemMass, playerMass, and pushPower
                     if (itemMass > playerMass) {
-                        hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * (1 - (playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
-                        rb.AddForce(-1 * ((playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
+                        hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (1 - (playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
+                        rb.AddForce(-1 * pushPower * ((playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
                     }
                     else {
                         hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * ((playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
@@ -85,8 +85,8 @@ public class playerController : MonoBehaviour
 
                 if(Input.GetMouseButton(0)){ //left click pushes object
                     if (itemMass > playerMass) {
-                        hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * (1 - (playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
-                        rb.AddForce(-1 * ((playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
+                        hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (1 - (playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
+                        rb.AddForce(-1 * pushPower * ((playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
                     }
                     else {
                         hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * ((playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
