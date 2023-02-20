@@ -19,8 +19,8 @@ public class playerController : MonoBehaviour
     private Vector2 mouseLook;
     private Vector2 smoothV;
     new private GameObject camera;
-    private float maxLookAngle = 50.0f;
-    private float minLookAngle = -50.0f;
+    private float maxLookAngle = 60.0f;
+    private float minLookAngle = -60.0f;
 
     public bool canJump;
     public float jumpHeight = 5.0f;
@@ -31,7 +31,7 @@ public class playerController : MonoBehaviour
 
     public GameObject lastHighlightedObject;
 
-    public float pushPower = 1.0f;
+    public float pushPower = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -58,8 +58,9 @@ public class playerController : MonoBehaviour
         if (Physics.SphereCast(camera.transform.position, 1.0f, camera.transform.forward, out RaycastHit hit)) 
         { 
            if(hit.collider.gameObject.tag == "Metal"){ //if spherecast hits a metal object, then highlight it and can push/pull it
+                hit.collider.gameObject.GetComponent<MeshRenderer>().material = highlightedItemColor;
                 if(hit.collider.gameObject != lastHighlightedObject){
-                    hit.collider.gameObject.GetComponent<MeshRenderer>().material = highlightedItemColor;
+                    
                     if(lastHighlightedObject != null){
                         lastHighlightedObject.GetComponent<MeshRenderer>().material = itemColor;
                     }
@@ -68,32 +69,18 @@ public class playerController : MonoBehaviour
                 
                 float itemMass = hit.collider.gameObject.GetComponent<Rigidbody>().mass;
                 float playerMass = rb.mass;
+                float netMass = playerMass + itemMass;
 
                 if(Input.GetMouseButton(1)){ //right click pulls object
                 //add force to item proportional to itemMass, playerMass, and pushPower
-                    if (itemMass > playerMass) {
-                        hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (1 - (playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
-                        rb.AddForce(-1 * pushPower * ((playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
-                    }
-                    else {
-                        hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * ((playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
-                        rb.AddForce(1 * (1 - (playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
-                    }
-                  
-                print("pulling");
+                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
+                    rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
                 }
 
                 if(Input.GetMouseButton(0)){ //left click pushes object
-                    if (itemMass > playerMass) {
-                        hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (1 - (playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
-                        rb.AddForce(-1 * pushPower * ((playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
-                    }
-                    else {
-                        hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * ((playerMass / itemMass)) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Impulse);
-                        rb.AddForce(1 * (1 - (playerMass / itemMass)) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Impulse);
-                    }
+                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
+                    rb.AddForce(-1 * pushPower * (itemMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
                     //hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(1 * camera.transform.forward, ForceMode.Impulse);
-                    print("pushing");
                 }
            }
            else if (hit.collider.gameObject.tag != "Metal" && lastHighlightedObject != null){ //if not looking at a metal object, then remove previous highlight
