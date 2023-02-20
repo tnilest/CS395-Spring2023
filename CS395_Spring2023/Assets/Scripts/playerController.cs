@@ -19,8 +19,8 @@ public class playerController : MonoBehaviour
     private Vector2 mouseLook;
     private Vector2 smoothV;
     new private GameObject camera;
-    private float maxLookAngle = 60.0f;
-    private float minLookAngle = -60.0f;
+    private float maxLookAngle = 70.0f;
+    private float minLookAngle = -70.0f;
 
     public bool canJump;
     public float jumpHeight = 5.0f;

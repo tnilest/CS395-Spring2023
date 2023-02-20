@@ -999,7 +999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7159435580883612308, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_Drag
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7159435580883612309, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: itemColor
