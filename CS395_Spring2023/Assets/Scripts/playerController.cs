@@ -17,8 +17,8 @@ public class playerController : MonoBehaviour
     private Vector2 mouseLook; //gets axis of mouse movement
     private Vector2 smoothV; //smoothed verision of mouse movement
     new private GameObject camera; //camera object
-    private float maxLookAngle = 70.0f; //limits how high player can look
-    private float minLookAngle = -70.0f; //limits how low player can look
+    private float maxLookAngle = 90.0f; //limits how high player can look
+    private float minLookAngle = -90.0f; //limits how low player can look
 
     public bool canJump;
     public float jumpHeight = 12.0f; //sets jump height
@@ -55,7 +55,7 @@ public class playerController : MonoBehaviour
     {
         //begin code for push/pull objects
         Ray ray = new Ray(camera.transform.position, camera.transform.forward);
-        if (Physics.SphereCast(camera.transform.position, 1.0f, camera.transform.forward, out RaycastHit hit)) 
+        if (Physics.SphereCast(camera.transform.position, 1.0f, camera.transform.forward, out RaycastHit hit,50)) 
         { 
            if(hit.collider.gameObject.tag == "Metal"){ //if spherecast hits a metal object, then highlight it and can push/pull it
                 hit.collider.gameObject.GetComponent<MeshRenderer>().material = highlightedItemColor; //highlight interactable object you are looking at
@@ -86,6 +86,13 @@ public class playerController : MonoBehaviour
            else if (hit.collider.gameObject.tag != "Metal" && lastHighlightedObject != null){ //if not looking at a metal object, then remove previous highlight
                 lastHighlightedObject.GetComponent<MeshRenderer>().material = itemColor;
            }
+        }
+        else
+        {
+            if(lastHighlightedObject != null)
+            {
+                lastHighlightedObject.GetComponent<MeshRenderer>().material = itemColor;
+            }
         }
         //end code for push/pull
 

@@ -18,19 +18,22 @@ public class FootColliderScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Environement"){
+        if(other.gameObject.tag == "Environement" | other.gameObject.tag == "Metal")
+        {
             this.GetComponentInParent<playerController>().canJump = true; 
         }
     }
 
     private void OnTriggerStay(Collider other) {
-        if(other.gameObject.tag == "Environement"){
+        if(other.gameObject.tag == "Environement" | other.gameObject.tag == "Metal")
+        {
             this.GetComponentInParent<playerController>().canJump = true; 
         }
     }
 
     private void OnTriggerExit(Collider other){
-        if(other.gameObject.tag == "Environement"){
+        if(other.gameObject.tag == "Environement" | other.gameObject.tag == "Metal")
+        {
             this.GetComponentInParent<playerController>().canJump = false; 
         }
     }
