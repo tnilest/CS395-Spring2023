@@ -55,7 +55,8 @@ public class playerController : MonoBehaviour
     {
         //begin code for push/pull objects
         Ray ray = new Ray(camera.transform.position, camera.transform.forward);
-        if (Physics.SphereCast(camera.transform.position, 1.0f, camera.transform.forward, out RaycastHit hit,50)) 
+        //Debug.DrawRay(camera.transform.position, camera.transform.forward, Color.white);
+        if (Physics.SphereCast(camera.transform.position, 1.0f, camera.transform.forward, out RaycastHit hit,60)) 
         { 
            if(hit.collider.gameObject.tag == "Metal"){ //if spherecast hits a metal object, then highlight it and can push/pull it
                 hit.collider.gameObject.GetComponent<MeshRenderer>().material = highlightedItemColor; //highlight interactable object you are looking at
