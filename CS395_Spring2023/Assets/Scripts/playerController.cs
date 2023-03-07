@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class playerController : MonoBehaviour
 
     public bool canJump;
     public float jumpHeight = 12.0f; //sets jump height
+
+    public LayerMask PlayerMask;
 
     //stores the materials for interactable items
     public Material itemColor; //stores item's default material color
@@ -49,14 +52,37 @@ public class playerController : MonoBehaviour
             rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
             canJump = false;
         }
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            this.transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
+
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            SceneManager.LoadScene("Level 1");
+            this.transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
+
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene("Level 2");
+            this.transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
+
     }
 
     void FixedUpdate()
     {
         //begin code for push/pull objects
-        Ray ray = new Ray(camera.transform.position, camera.transform.forward);
-        //Debug.DrawRay(camera.transform.position, camera.transform.forward, Color.white);
-        if (Physics.SphereCast(camera.transform.position, 1.0f, camera.transform.forward, out RaycastHit hit,60)) 
+
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit,80)) 
         { 
            if(hit.collider.gameObject.tag == "Metal"){ //if spherecast hits a metal object, then highlight it and can push/pull it
                 hit.collider.gameObject.GetComponent<MeshRenderer>().material = highlightedItemColor; //highlight interactable object you are looking at
