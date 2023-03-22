@@ -130,7 +130,7 @@ public class playerController : MonoBehaviour
         horz = Input.GetAxis("Horizontal") * curr_speed * Time.deltaTime; //detects left/right keyboard input
 
         curr_pos = rb.position;
-        Vector3 input = new Vector3(horz, 0.2f, vert);
+        Vector3 input = new Vector3(horz, 0.1f, vert);
         input = rb.rotation * input;
         rb.AddForce(input, ForceMode.Impulse);
 
