@@ -85,32 +85,42 @@ public class playerController : MonoBehaviour
     {
         //begin code for push/pull objects
 
-        if (interacting && Vector3.Distance(lastHighlightedObject.GetComponent<Rigidbody>().position, rb.position) <=60)
+        if (interacting)
         {
-            float itemMass = lastHighlightedObject.GetComponent<Rigidbody>().mass;
-            float playerMass = rb.mass;
-            float netMass = playerMass + itemMass;
 
-            if (Input.GetMouseButton(1))
-            { //right click pulls object
-              //add force to item proportional to itemMass, playerMass, and pushPower
-                lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (lastHighlightedObject.transform.position - this.transform.position).normalized, ForceMode.Force);
-                rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
-                interacting = true;
+            if(Vector3.Distance(lastHighlightedObject.GetComponent<Rigidbody>().position, rb.position) <= 60)
+            {
+                float itemMass = lastHighlightedObject.GetComponent<Rigidbody>().mass;
+                float playerMass = rb.mass;
+                float netMass = playerMass + itemMass;
+
+                if (Input.GetMouseButton(1))
+                { //right click pulls object
+                    //add force to item proportional to itemMass, playerMass, and pushPower
+                    lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (lastHighlightedObject.transform.position - this.transform.position).normalized, ForceMode.Force);
+                    rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
+                    interacting = true;
+                 }
+
+                if (Input.GetMouseButton(0))
+                 { //left click pushes object
+                    //applies propotional forces to both object at player. 
+                    lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
+                    rb.AddForce(-1 * pushPower * (itemMass / netMass) * (lastHighlightedObject.transform.position - this.transform.position).normalized, ForceMode.Force);
+                    interacting = true;
+                 }
+
+                if (!Input.GetMouseButton(1) && !Input.GetMouseButton(0))
+                 {
+                    interacting = false;
+                 }
             }
-
-            if (Input.GetMouseButton(0))
-            { //left click pushes object
-              //applies propotional forces to both object at player. 
-                lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
-                rb.AddForce(-1 * pushPower * (itemMass / netMass) * (lastHighlightedObject.transform.position - this.transform.position).normalized, ForceMode.Force);
-                interacting = true;
-            }
-
-            if (!Input.GetMouseButton(1) && !Input.GetMouseButton(0))
+            else
             {
                 interacting = false;
             }
+
+            
         }
 
         else if (Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit,60)) 
