@@ -34,6 +34,8 @@ public class playerController : MonoBehaviour
 
     public float pushPower = 100.0f; //total push/pull power that is distributed between player & object
 
+    private bool interacting; //a boolean to track if the player is currently interacting with (pushing or pulling) an object
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,7 @@ public class playerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>(); // collects player's rididbody
         camera = this.transform.GetChild(0).gameObject; // collects camera object, assuming it is the first child of player
         canJump = true;
+        interacting = false;
     }
 
     // Update is called once per frame
@@ -82,7 +85,35 @@ public class playerController : MonoBehaviour
     {
         //begin code for push/pull objects
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit,80)) 
+        if (interacting && Vector3.Distance(lastHighlightedObject.GetComponent<Rigidbody>().position, rb.position) <=60)
+        {
+            float itemMass = lastHighlightedObject.GetComponent<Rigidbody>().mass;
+            float playerMass = rb.mass;
+            float netMass = playerMass + itemMass;
+
+            if (Input.GetMouseButton(1))
+            { //right click pulls object
+              //add force to item proportional to itemMass, playerMass, and pushPower
+                lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (lastHighlightedObject.transform.position - this.transform.position).normalized, ForceMode.Force);
+                rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
+                interacting = true;
+            }
+
+            if (Input.GetMouseButton(0))
+            { //left click pushes object
+              //applies propotional forces to both object at player. 
+                lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
+                rb.AddForce(-1 * pushPower * (itemMass / netMass) * (lastHighlightedObject.transform.position - this.transform.position).normalized, ForceMode.Force);
+                interacting = true;
+            }
+
+            if (!Input.GetMouseButton(1) && !Input.GetMouseButton(0))
+            {
+                interacting = false;
+            }
+        }
+
+        else if (Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit,60)) 
         { 
            if(hit.collider.gameObject.tag == "Metal"){ //if spherecast hits a metal object, then highlight it and can push/pull it
                 hit.collider.gameObject.GetComponent<MeshRenderer>().material = highlightedItemColor; //highlight interactable object you are looking at
@@ -100,17 +131,19 @@ public class playerController : MonoBehaviour
 
                 if(Input.GetMouseButton(1)){ //right click pulls object
                     //add force to item proportional to itemMass, playerMass, and pushPower
+                    interacting = true;
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
                     rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
                 }
 
                 if(Input.GetMouseButton(0)){ //left click pushes object
+                    interacting = true;
                     //applies propotional forces to both object at player. 
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
                     rb.AddForce(-1 * pushPower * (itemMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
                 }
            }
-           else if (hit.collider.gameObject.tag != "Metal" && lastHighlightedObject != null){ //if not looking at a metal object, then remove previous highlight
+           else if (hit.collider.gameObject.tag != "Metal" && lastHighlightedObject != null && !interacting){ //if not looking at a metal object, then remove previous highlight
                 lastHighlightedObject.GetComponent<MeshRenderer>().material = itemColor;
            }
         }
@@ -132,7 +165,7 @@ public class playerController : MonoBehaviour
         curr_pos = rb.position;
         Vector3 input = new Vector3(horz, 0.1f, vert);
         input = rb.rotation * input;
-        rb.AddForce(input, ForceMode.Impulse);
+        rb.AddForce(input, ForceMode.VelocityChange);
 
         var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));

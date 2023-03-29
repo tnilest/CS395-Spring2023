@@ -635,16 +635,16 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Template_3D
-  metroPackageVersion: 
-  metroCertificatePath: C:\Users\Travis\Desktop\CS395-Spring2023\CS395_Spring2023\Assets\WSATestCertificate.pfx
+  metroPackageName: Template3D
+  metroPackageVersion: 1.0.0.0
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 8098e0f26964da01
   metroApplicationDescription: Template_3D
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: CS395_Spring2023
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
