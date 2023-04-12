@@ -549,6 +549,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5574767141959932427, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d6bfcbe969d33e4b89956a2f647c4b3, type: 3}
+    - target: {fileID: 7159435580072977458, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7159435580883612307, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_Name
       value: Player
@@ -940,3 +948,77 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cb2d4844853acd4f9621b6e8b23ab2e, type: 3}
+--- !u!1001 &5657904803957691155
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5657904803664628488, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 5657904803957691156}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628489, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628490, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: aeb4326b820f73342a5c94857f88453e, type: 3}
+    - target: {fileID: 5657904803664628490, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657904803664628491, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+      propertyPath: m_Name
+      value: Ambient Audio
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+--- !u!82 &5657904803957691156 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5657904803664628490, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
+  m_PrefabInstance: {fileID: 5657904803957691155}
+  m_PrefabAsset: {fileID: 0}
