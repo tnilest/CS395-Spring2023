@@ -498,7 +498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956760014154232421, guid: aa72d4cac1f0a1a4cb276bf0e6caa409, type: 3}
       propertyPath: m_LocalScale.z
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8956760014154232421, guid: aa72d4cac1f0a1a4cb276bf0e6caa409, type: 3}
       propertyPath: m_LocalPosition.x
@@ -510,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956760014154232421, guid: aa72d4cac1f0a1a4cb276bf0e6caa409, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.87
+      value: 39.5
       objectReference: {fileID: 0}
     - target: {fileID: 8956760014154232421, guid: aa72d4cac1f0a1a4cb276bf0e6caa409, type: 3}
       propertyPath: m_LocalRotation.w
@@ -549,6 +549,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5574767141959932427, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5574767141959932427, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_audioClip
       value: 

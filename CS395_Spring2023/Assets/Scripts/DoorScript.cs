@@ -12,8 +12,15 @@ public class DoorScript : MonoBehaviour
     [SerializeField]
     public Material ActivatedDoorMaterial;
 
-    void FixedUpdate()
+    [SerializeField]
+    private AudioClip activeDoor;
+
+    private AudioSource audioSource;
+
+    void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = activeDoor;
         
     }
 
@@ -22,6 +29,11 @@ public class DoorScript : MonoBehaviour
         if (isUnlocked)
         {
             door.GetComponent<MeshRenderer>().material = ActivatedDoorMaterial;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+                
         }
     }
 
@@ -31,6 +43,7 @@ public class DoorScript : MonoBehaviour
         {
             isUnlocked = true;
             col.gameObject.SetActive(false);
+            
         }
 
         if(col.tag == "Player" && isUnlocked)

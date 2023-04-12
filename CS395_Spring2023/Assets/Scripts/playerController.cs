@@ -167,19 +167,21 @@ public class playerController : MonoBehaviour
                 if(Input.GetMouseButton(1)){ //right click pulls object
                     //add force to item proportional to itemMass, playerMass, and pushPower
                     interacting = true;
-                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
-                    rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
                     audioSource.clip = pullSound;
                     audioSource.Play();
+                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
+                    rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
+                    
                 }
 
                 if(Input.GetMouseButton(0)){ //left click pushes object
                     interacting = true;
+                    audioSource.clip = pushSound;
+                    audioSource.Play();
                     //applies propotional forces to both object at player. 
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
                     rb.AddForce(-1 * pushPower * (itemMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
-                    audioSource.clip = pushSound;
-                    audioSource.Play();
+                    
                 }
            }
            else if (hit.collider.gameObject.tag != "Metal" && lastHighlightedObject != null && !interacting){ //if not looking at a metal object, then remove previous highlight
