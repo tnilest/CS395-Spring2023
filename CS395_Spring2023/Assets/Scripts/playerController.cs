@@ -79,13 +79,11 @@ public class playerController : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            this.transform.Rotate(0.0f, 180.0f, 0.0f);
         }
 
         if (Input.GetKey(KeyCode.Alpha1))
         {
             SceneManager.LoadScene("Level 1");
-            this.transform.Rotate(0.0f, 180.0f, 0.0f);
         }
 
         if (Input.GetKey(KeyCode.Alpha2))
@@ -111,9 +109,19 @@ public class playerController : MonoBehaviour
                 if (Input.GetMouseButton(1))
                 { //right click pulls object
                     //add force to item proportional to itemMass, playerMass, and pushPower
-                    lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (lastHighlightedObject.transform.position - this.transform.position).normalized, ForceMode.Force);
-                    rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
+
+                    if(Vector3.Distance(lastHighlightedObject.GetComponent<Rigidbody>().position, rb.position) <= 5 && itemMass < playerMass) //If lighter object is pulled close, direct it in front of player so that they can manipulate it more consistently
+                    {
+                        lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (itemMass / netMass) * (lastHighlightedObject.transform.position - (this.transform.position + camera.transform.forward*1.5f)).normalized, ForceMode.Force);
+                    }
+                    else
+                    {
+                        lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (lastHighlightedObject.transform.position - this.transform.position).normalized, ForceMode.Force);
+                        rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
+                    }
+
                     interacting = true;
+
                     if(audioSource.clip == pushSound)
                     {
                         audioSource.clip = pullSound;
@@ -143,6 +151,7 @@ public class playerController : MonoBehaviour
             else
             {
                 interacting = false;
+                audioSource.Stop();
             }
 
             
@@ -167,21 +176,19 @@ public class playerController : MonoBehaviour
                 if(Input.GetMouseButton(1)){ //right click pulls object
                     //add force to item proportional to itemMass, playerMass, and pushPower
                     interacting = true;
-                    audioSource.clip = pullSound;
-                    audioSource.Play();
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
                     rb.AddForce(-1 * pushPower * (itemMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
-                    
+                    audioSource.clip = pullSound;
+                    audioSource.Play();
                 }
 
                 if(Input.GetMouseButton(0)){ //left click pushes object
                     interacting = true;
-                    audioSource.clip = pushSound;
-                    audioSource.Play();
                     //applies propotional forces to both object at player. 
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
                     rb.AddForce(-1 * pushPower * (itemMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
-                    
+                    audioSource.clip = pushSound;
+                    audioSource.Play();
                 }
            }
            else if (hit.collider.gameObject.tag != "Metal" && lastHighlightedObject != null && !interacting){ //if not looking at a metal object, then remove previous highlight
@@ -225,6 +232,7 @@ public class playerController : MonoBehaviour
         Quaternion lookAngle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         camera.transform.localRotation = lookAngle;
         //end camera movement
+
     }
 
 }

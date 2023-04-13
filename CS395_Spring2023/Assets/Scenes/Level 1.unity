@@ -188,6 +188,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6528782484178305070, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528782484178305070, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
       objectReference: {fileID: 0}
@@ -212,12 +216,20 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6528782484467380703, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528782484467380703, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6528782484467380703, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528782484692964675, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6528782484692964675, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -274,6 +286,10 @@ PrefabInstance:
     - target: {fileID: 6528782485678021194, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528782485681079875, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6528782485681079875, guid: e72ba37cba384194e91016d6d1e15cb8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -534,7 +550,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ambient Audio
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5657904803664628488, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
 --- !u!82 &1013344639 stripped
 AudioSource:
@@ -611,11 +628,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2222306348851985245, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2222306348851985245, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5574767141959932427, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_audioClip

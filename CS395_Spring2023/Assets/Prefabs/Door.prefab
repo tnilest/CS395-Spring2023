@@ -115,7 +115,7 @@ MonoBehaviour:
   door: {fileID: 9116035509679518140}
   isUnlocked: 0
   ActivatedDoorMaterial: {fileID: 2100000, guid: 55d1d8bddaed3964f8bff7c05ec0aeee, type: 2}
-  activeDoor: {fileID: 8300000, guid: 151d90e19db9a4774b3edb3b5338afd5, type: 3}
+  activeDoor: {fileID: 8300000, guid: 7f50c3394783a4fef8270e6cbdc059e7, type: 3}
 --- !u!82 &8920719879849774352
 AudioSource:
   m_ObjectHideFlags: 0

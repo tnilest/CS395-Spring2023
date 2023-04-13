@@ -627,6 +627,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4105721746817283392, guid: 0a02d86b576738f44bea864927e9f2e8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105721746817283392, guid: 0a02d86b576738f44bea864927e9f2e8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105721746817283392, guid: 0a02d86b576738f44bea864927e9f2e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1019,7 +1027,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ambient Audio
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5657904803664628488, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b1bc58deaf03e7048b738bd9226aa306, type: 3}
 --- !u!82 &5657904803957691156 stripped
 AudioSource:
