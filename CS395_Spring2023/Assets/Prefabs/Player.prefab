@@ -66,20 +66,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Controls:
-
-    WASD - Move
-
-    L_Mouse - Push
-
-    R_Mouse - Pull
-
-    1,2
-    - Change Level
+  m_text: '
 
     R - Reset
 
-    ESC - Close Game'
+    ESC - Main Menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -791,8 +782,6 @@ MonoBehaviour:
   pushPower: 50
   pushSound: {fileID: 8300000, guid: 759deda5caefb4859803bfce58dd961d, type: 3}
   pullSound: {fileID: 8300000, guid: f720f0c9338784af5b08289b54cf3c23, type: 3}
-  runSound: {fileID: 8300000, guid: 482e70543be8ad8498ab42b49354ef3d, type: 3}
-  jumpSound: {fileID: 8300000, guid: 8e6c2572b913da6438f65265ff925a65, type: 3}
 --- !u!54 &7159435580883612308
 Rigidbody:
   m_ObjectHideFlags: 0

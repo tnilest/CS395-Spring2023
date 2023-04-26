@@ -94,9 +94,10 @@ public class playerController : MonoBehaviour
 
         }
 
-        if (Input.GetKey("escape"))
+        if (Input.GetKey("escape") || Input.GetKey("tab")) //currently allows tab for ease of testing
         {
-            Application.Quit();
+            Cursor.lockState = CursorLockMode.None; //used to turn on mouse cursor during execution.
+            SceneManager.LoadScene(0); //return to main menu
         }
 
         if (Input.GetKey(KeyCode.R))
@@ -104,15 +105,6 @@ public class playerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            SceneManager.LoadScene("Level 1");
-        }
-
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            SceneManager.LoadScene("Level 2");
-        }
 
     }
 
