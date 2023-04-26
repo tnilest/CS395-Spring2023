@@ -569,6 +569,14 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7159435580883612309, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: runSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 482e70543be8ad8498ab42b49354ef3d, type: 3}
+    - target: {fileID: 7159435580883612309, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e6c2572b913da6438f65265ff925a65, type: 3}
     - target: {fileID: 7159435580883612313, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -612,6 +620,10 @@ PrefabInstance:
     - target: {fileID: 7159435580883612313, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434894834890793510, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}

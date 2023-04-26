@@ -40,9 +40,16 @@ public class playerController : MonoBehaviour
     private AudioClip pushSound;
     [SerializeField]
     private AudioClip pullSound;
- 
 
-    
+    //[SerializeField]
+    //private AudioClip runSound; //Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6846">Pixabay</a>
+
+    //[SerializeField]
+    //private AudioClip jumpSound; //Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6270">Pixabay</a>
+
+
+
+
     private AudioSource audioSource;
 
 
@@ -69,6 +76,22 @@ public class playerController : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
             canJump = false;
+
+            /*
+            if (audioSource.clip != jumpSound)
+            {
+                AudioClip temp = audioSource.clip;
+                audioSource.clip = jumpSound;
+                audioSource.Play();
+                audioSource.clip = temp;
+            }
+            else
+            {
+                audioSource.clip = jumpSound;
+                audioSource.Play();
+            }
+            */
+
         }
 
         if (Input.GetKey("escape"))
