@@ -37,20 +37,25 @@ public class playerController : MonoBehaviour
     private bool interacting; //a boolean to track if the player is currently interacting with (pushing or pulling) an object
     
     [SerializeField]
-    private AudioClip pushSound;
+    private AudioClip pushSound; //push sound effect
     [SerializeField]
-    private AudioClip pullSound;
+    private AudioClip pullSound; //pull sound effect
 
-    //[SerializeField]
-    //private AudioClip runSound; //Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6846">Pixabay</a>
+    [SerializeField]
+    private AudioClip runSound;  //run sound effect
 
-    //[SerializeField]
-    //private AudioClip jumpSound; //Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6270">Pixabay</a>
+    [SerializeField]
+    private AudioClip jumpSound; //jump sound effect
 
+    [SerializeField]
+    public AudioClip landSound; //landing sound effect
 
+    private AudioSource audioSource; //player-centered audio source. Used for pushing,pulling audio.
 
+    [SerializeField]
+    public AudioSource movementAudioSource; //audio source centered on foot-collider. used to play movement based audio clips.
 
-    private AudioSource audioSource;
+    public bool controlsEnabled; //boolean to prevent certain keyboard inputs from being used. Currently only applied for transition between scenes.
 
 
     // Start is called before the first frame update
@@ -60,73 +65,64 @@ public class playerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked; //used to turn off mouse cursor during execution.
         rb = gameObject.GetComponent<Rigidbody>(); // collects player's rididbody
         camera = this.transform.GetChild(0).gameObject; // collects camera object, assuming it is the first child of player
-        canJump = true;
+        //canJump = true;
         interacting = false;
 
-        camera.AddComponent(typeof(AudioListener));
+        camera.AddComponent(typeof(AudioListener)); //initialize audio listner on scene load. 
 
         audioSource = GetComponent<AudioSource>();
 
+        movementAudioSource.clip = runSound;
+
+        controlsEnabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space") && canJump) //limits jumping
+        if (Input.GetKeyDown("space") && canJump && controlsEnabled) //limits jumping
         {
             rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
-            canJump = false;
 
-            /*
-            if (audioSource.clip != jumpSound)
-            {
-                AudioClip temp = audioSource.clip;
-                audioSource.clip = jumpSound;
-                audioSource.Play();
-                audioSource.clip = temp;
-            }
-            else
-            {
-                audioSource.clip = jumpSound;
-                audioSource.Play();
-            }
-            */
+            //play jump sound effect
+            movementAudioSource.Stop();
+            movementAudioSource.clip = jumpSound;
+            movementAudioSource.volume = 0.6f;
+            movementAudioSource.Play();
 
         }
 
-        if (Input.GetKey("escape") || Input.GetKey("tab")) //currently allows tab for ease of testing
+        if (Input.GetKey("escape") && controlsEnabled) //escape key returns to main menu
         {
             Cursor.lockState = CursorLockMode.None; //used to turn on mouse cursor during execution.
             SceneManager.LoadScene(0); //return to main menu
         }
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R)) //reloads the current scene
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-
     }
 
     void FixedUpdate()
     {
         //begin code for push/pull objects
 
-        if (interacting)
+        if (interacting) //if player is currently pushing/pulling on an object.
         {
-
-            if(Vector3.Distance(lastHighlightedObject.GetComponent<Rigidbody>().position, rb.position) <= 60)
+            if(Vector3.Distance(lastHighlightedObject.GetComponent<Rigidbody>().position, rb.position) <= 60) 
             {
-                float itemMass = lastHighlightedObject.GetComponent<Rigidbody>().mass;
-                float playerMass = rb.mass;
-                float netMass = playerMass + itemMass;
+                float itemMass = lastHighlightedObject.GetComponent<Rigidbody>().mass; //interacted item's mass
+                float playerMass = rb.mass; //player's mass
+                float netMass = playerMass + itemMass; //combined mass in system.
 
-                if (Input.GetMouseButton(1))
+                if (Input.GetMouseButton(1) && controlsEnabled)
                 { //right click pulls object
                     //add force to item proportional to itemMass, playerMass, and pushPower
 
                     if(Vector3.Distance(lastHighlightedObject.GetComponent<Rigidbody>().position, rb.position) <= 5 && itemMass < playerMass) //If lighter object is pulled close, direct it in front of player so that they can manipulate it more consistently
                     {
+                        lastHighlightedObject.GetComponent<Rigidbody>().velocity = lastHighlightedObject.GetComponent<Rigidbody>().velocity * 0.95f; //slows down velocity for better manipulation.
                         lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (itemMass / netMass) * (lastHighlightedObject.transform.position - (this.transform.position + camera.transform.forward*1.5f)).normalized, ForceMode.Force);
                     }
                     else
@@ -144,7 +140,7 @@ public class playerController : MonoBehaviour
                     }
                  }
 
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0) && controlsEnabled)
                  { //left click pushes object
                     //applies propotional forces to both object at player. 
                     lastHighlightedObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - lastHighlightedObject.transform.position).normalized, ForceMode.Force);
@@ -167,9 +163,7 @@ public class playerController : MonoBehaviour
             {
                 interacting = false;
                 audioSource.Stop();
-            }
-
-            
+            }  
         }
 
         else if (Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit,60)) 
@@ -188,7 +182,7 @@ public class playerController : MonoBehaviour
                 float playerMass = rb.mass;
                 float netMass = playerMass + itemMass;
 
-                if(Input.GetMouseButton(1)){ //right click pulls object
+                if(Input.GetMouseButton(1) && controlsEnabled){ //right click pulls object
                     //add force to item proportional to itemMass, playerMass, and pushPower
                     interacting = true;
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (hit.collider.gameObject.transform.position - this.transform.position).normalized, ForceMode.Force);
@@ -197,7 +191,8 @@ public class playerController : MonoBehaviour
                     audioSource.Play();
                 }
 
-                if(Input.GetMouseButton(0)){ //left click pushes object
+                if(Input.GetMouseButton(0) && controlsEnabled)
+                { //left click pushes object
                     interacting = true;
                     //applies propotional forces to both object at player. 
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(-1 * pushPower * (playerMass / netMass) * (this.transform.position - hit.collider.gameObject.transform.position).normalized, ForceMode.Force);
@@ -220,16 +215,45 @@ public class playerController : MonoBehaviour
         //end code for push/pull
 
         //begin basic movement code
-        float curr_speed = speed;
+        if (controlsEnabled)
+        {
+            float curr_speed = speed;
 
-        vert = Input.GetAxis("Vertical") * curr_speed * Time.deltaTime; //detects forward backward directional input and moves proportional to speed value.
-        horz = Input.GetAxis("Horizontal") * curr_speed * Time.deltaTime; //detects left/right keyboard input
+            vert = Input.GetAxis("Vertical") * curr_speed * Time.deltaTime; //detects forward backward directional input and moves proportional to speed value.
+            horz = Input.GetAxis("Horizontal") * curr_speed * Time.deltaTime; //detects left/right keyboard input
 
-        curr_pos = rb.position;
-        Vector3 input = new Vector3(horz, 0.1f, vert);
-        input = rb.rotation * input;
-        rb.AddForce(input, ForceMode.VelocityChange);
 
+            curr_pos = rb.position;
+            Vector3 input = new Vector3(horz, 0.1f, vert);
+            input = rb.rotation * input;
+            rb.AddForce(input, ForceMode.VelocityChange);
+
+            if (canJump && rb.velocity.magnitude > 0.2f)
+            {
+                if (!movementAudioSource.isPlaying)
+                {
+                    movementAudioSource.clip = runSound;
+                    movementAudioSource.volume = 1.2f;
+                    movementAudioSource.Play();
+                }
+            }
+            else
+            {
+                if(movementAudioSource.clip != jumpSound && movementAudioSource.clip != landSound)
+                {
+                    movementAudioSource.Stop();
+                }
+            }
+         }
+        
+        if (!controlsEnabled)
+        {
+            movementAudioSource.Stop();
+            rb.velocity = rb.velocity * 0.9f;
+            rb.AddForce(new Vector3(0.0f, 0.5f, 0.0f), ForceMode.VelocityChange);
+        }
+
+        //use mouse movement to look around. base input is jittery so use smoothing.
         var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
         smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
@@ -247,7 +271,5 @@ public class playerController : MonoBehaviour
         Quaternion lookAngle = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         camera.transform.localRotation = lookAngle;
         //end camera movement
-
     }
-
 }

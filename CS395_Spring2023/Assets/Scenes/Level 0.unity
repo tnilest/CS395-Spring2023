@@ -549,6 +549,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 736001613337810741, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341179365278149852, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_text
+      value: 'Press Spacebar to Jump
+
+
+        Escape Through The Green Portal'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341179365278149852, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_margin.z
+      value: -420.90378
+      objectReference: {fileID: 0}
     - target: {fileID: 5574767141959932427, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_Volume
       value: 0.4
@@ -932,7 +947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116035509679518136, guid: 1cb2d4844853acd4f9621b6e8b23ab2e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.39
+      value: -46.75
       objectReference: {fileID: 0}
     - target: {fileID: 9116035509679518136, guid: 1cb2d4844853acd4f9621b6e8b23ab2e, type: 3}
       propertyPath: m_LocalRotation.w

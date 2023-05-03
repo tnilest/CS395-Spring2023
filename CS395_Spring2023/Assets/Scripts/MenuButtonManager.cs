@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuButtonManager : MonoBehaviour
+public class MenuButtonManager : MonoBehaviour //manager script for menu button operations.
 {
     public int firstLevel;
     public int secondLevel;
@@ -28,8 +28,7 @@ public class MenuButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene(level);
     }
-
-    
+ 
     public void ViewCredits()
     {
         ButtonCanvas.SetActive(false);

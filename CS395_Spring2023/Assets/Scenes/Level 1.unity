@@ -642,6 +642,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5341179365278149852, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_text
+      value: 'Try Right-Click To Pull On The Metal
+
+
+        Power The Exit With
+        A Metal Object'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341179365278149852, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: m_margin.z
+      value: -512.9524
+      objectReference: {fileID: 0}
     - target: {fileID: 5574767141959932427, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -649,6 +661,10 @@ PrefabInstance:
     - target: {fileID: 6283029473268025569, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6571184732351412983, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
+      propertyPath: Loop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7159435579798518405, guid: 914d9c18dd2e1a943812adc1271e4407, type: 3}
       propertyPath: m_TagString
@@ -866,7 +882,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0, g: 1, b: 0.051671505, a: 1}
+  m_Color: {r: 0.44775718, g: 0.735849, b: 0.4624442, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
